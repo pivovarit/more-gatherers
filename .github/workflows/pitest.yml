@@ -22,9 +22,10 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
+          distribution: 'temurin'
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.architecture }}
-          distribution: 'oracle'
+          cache: 'maven'
           
       - uses: actions/cache@v4.1.0
         with:
