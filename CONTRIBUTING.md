@@ -1,1 +1,0 @@
-Just a bit of common sense - it's better to start with an issue and discuss in order to avoid doing good work that doesn't go along the roadmap.
