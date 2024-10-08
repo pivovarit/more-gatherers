@@ -49,16 +49,7 @@ public final class MoreGatherers {
     }
 
     public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zip(Iterator<T2> iterator) {
-        return Gatherer.ofSequential(
-          () -> iterator,
-          (state, element, downstream) -> {
-              if (state.hasNext()) {
-                  downstream.push(Map.entry(element, state.next()));
-                  return true;
-              } else {
-                  return false;
-              }
-          });
+        return zip(iterator, Map::entry);
     }
 
     public static <T1, T2, R> Gatherer<T1, ?, R> zip(Iterator<T2> iterator, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
