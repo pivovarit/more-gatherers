@@ -8,5 +8,14 @@ Missing Stream API functionality you always longed for - provided via `Gatherers
 
 [![Stargazers over time](https://starchart.cc/pivovarit/more-gatherers.svg?variant=adaptive)](https://starchart.cc/pivovarit/more-gatherers)
 
-## Project is under intense development and will be released alongside Java 24, when Stream Gatherers go GA
+## Project is under intense development and will be released alongside Java 24, when Stream Gatherers go GA (hopefully)
 
+### Overview
+
+Java's Stream API is a powerful tool for processing collections of data. However, it lacks some functionality that could make it even more powerful. This library aims to fill that gap by providing a set of `Gatherers` that can be used to collect data from a stream in a more flexible way.
+
+Provided `Gatherers`:
+- `MoreGatherers.zip(Collection<T>)`
+- `MoreGatherers.zip(Iterator<T>)`
+- `MoreGatherers.zip(Stream<T>)`
+- `MoreGatherers.distinctBy(Function<T, R>)`

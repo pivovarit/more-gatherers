@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static com.pivovarit.gatherers.MoreGatherers.zip;
 import static java.util.Map.entry;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,17 +13,17 @@ class ZipCollectionTest {
 
     @Test
     void shouldZipEmpty() {
-        assertThat(Stream.empty().gather(MoreGatherers.zip(List.of(1, 2, 3)))).isEmpty();
+        assertThat(Stream.empty().gather(zip(List.of(1, 2, 3)))).isEmpty();
     }
 
     @Test
     void shouldZipWithEmpty() {
-        assertThat(Stream.of(1, 2, 3).gather(MoreGatherers.zip(List.of()))).isEmpty();
+        assertThat(Stream.of(1, 2, 3).gather(zip(List.of()))).isEmpty();
     }
 
     @Test
     void shouldZip() {
-        assertThat(Stream.of(1, 2, 3).gather(MoreGatherers.zip(List.of("a", "b", "c", "d"))))
+        assertThat(Stream.of(1, 2, 3).gather(zip(List.of("a", "b", "c", "d"))))
           .containsExactly(
             entry(1, "a"),
             entry(2, "b"),
