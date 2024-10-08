@@ -1,0 +1,29 @@
+package com.pivovarit.gatherers;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.stream.Stream;
+
+import static com.pivovarit.gatherers.MoreGatherers.zip;
+import static java.util.Map.entry;
+import static org.assertj.core.api.Assertions.assertThat;
+
+class ZipIteratorMapperTest {
+
+    @Test
+    void shouldZipEmpty() {
+        assertThat(Stream.<Integer>empty().gather(zip(List.of(1, 2, 3).iterator(), Integer::sum))).isEmpty();
+    }
+
+    @Test
+    void shouldZipWithEmpty() {
+        assertThat(Stream.of(1, 2, 3).gather(zip(List.<Integer>of().iterator(), Integer::sum))).isEmpty();
+    }
+
+    @Test
+    void shouldZip() {
+        assertThat(Stream.of(1, 2, 3).gather(zip(List.of("a", "b", "c", "d").iterator(), (i, s) -> i + s)))
+          .containsExactly("1a", "2b", "3c");
+    }
+}
