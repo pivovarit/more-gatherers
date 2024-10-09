@@ -19,6 +19,23 @@ public final class MoreGatherers {
     private MoreGatherers() {
     }
 
+    public static <T> Gatherer<T, ?, T> sample(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("sample size can't be lower than 1");
+        }
+        return n == 1
+          ? noop()
+          : Gatherer.ofSequential(
+          () -> new AtomicLong(),
+          (state, element, downstream) -> {
+              if (state.getAndIncrement() % n == 0) {
+                  downstream.push(element);
+              }
+              return true;
+          }
+        );
+    }
+
     public static <T, U> Gatherer<T, ?, T> distinctBy(Function<? super T, ? extends U> keyExtractor) {
         Objects.requireNonNull(keyExtractor);
         return Gatherer.ofSequential(
@@ -44,7 +61,7 @@ public final class MoreGatherers {
         return zip(other.iterator());
     }
 
-   public static <T1, T2, R> Gatherer<T1, ?, R> zip(Collection<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
+    public static <T1, T2, R> Gatherer<T1, ?, R> zip(Collection<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
         return zip(other.iterator(), mapper);
     }
 
@@ -73,6 +90,16 @@ public final class MoreGatherers {
               downstream.push(Map.entry(state.getAndIncrement(), element));
               return true;
           })
+        );
+    }
+
+    static <T> Gatherer<T, ?, T> noop() {
+        return ofSequential(
+          () -> null,
+          (_, element, downstream) -> {
+              downstream.push(element);
+              return true;
+          }
         );
     }
 }
