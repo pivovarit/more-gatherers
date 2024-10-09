@@ -15,6 +15,7 @@ Missing Stream API functionality you always longed for - provided via `Gatherers
 Java's Stream API is a powerful tool for processing collections of data. However, it lacks some functionality that could make it even more powerful. This library aims to fill that gap by providing a set of `Gatherers` that can be used to collect data from a stream in a more flexible way.
 
 Provided `Gatherers`:
+- `MoreGatherers.sample(int)`
 - `MoreGatherers.zip(Collection<T2>)`
 - `MoreGatherers.zip(Iterator<T2>)`
 - `MoreGatherers.zip(Stream<T2>)`
