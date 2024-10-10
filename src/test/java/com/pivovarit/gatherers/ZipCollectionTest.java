@@ -2,12 +2,14 @@ package com.pivovarit.gatherers;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static com.pivovarit.gatherers.MoreGatherers.zip;
 import static java.util.Map.entry;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ZipCollectionTest {
 
@@ -29,5 +31,10 @@ class ZipCollectionTest {
             entry(2, "b"),
             entry(3, "c")
           );
+    }
+
+    @Test
+    void shouldRejectNullCollection() {
+        assertThatThrownBy(() -> zip((Collection<Object>) null)).isInstanceOf(NullPointerException.class);
     }
 }
