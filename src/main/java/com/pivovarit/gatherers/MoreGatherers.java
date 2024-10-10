@@ -1,7 +1,5 @@
 package com.pivovarit.gatherers;
 
-import java.util.ArrayDeque;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -106,12 +104,12 @@ public final class MoreGatherers {
         return zip(other.iterator(), mapper);
     }
 
-    public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zip(Collection<T2> other) {
+    public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zipWithIterable(Iterable<T2> other) {
         Objects.requireNonNull(other, "other can't be null");
         return zip(other.iterator());
     }
 
-    public static <T1, T2, R> Gatherer<T1, ?, R> zip(Collection<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
+    public static <T1, T2, R> Gatherer<T1, ?, R> zipWithIterable(Iterable<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
         Objects.requireNonNull(other, "other can't be null");
         Objects.requireNonNull(mapper, "mapper can't be null");
         return zip(other.iterator(), mapper);

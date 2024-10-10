@@ -17,14 +17,14 @@ Java's Stream API is a powerful tool for processing collections of data. However
 Whenever possible, the library follows Project Reactor's naming conventions.
 
 Provided `Gatherers`:
-- `MoreGatherers.sample(int)`
 - `MoreGatherers.last(int)`
-- `MoreGatherers.zip(Collection<T2>)`
+- `MoreGatherers.sample(int)`
 - `MoreGatherers.zip(Iterator<T2>)`
-- `MoreGatherers.zip(Stream<T2>)`
-- `MoreGatherers.zip(Collection<T2>, BiFunction<T1,T2>)`
 - `MoreGatherers.zip(Iterator<T2>, BiFunction<T1,T2>)`
+- `MoreGatherers.zip(Stream<T2>)`
 - `MoreGatherers.zip(Stream<T2>, BiFunction<T1,T2>)`
+- `MoreGatherers.zipWithIterable(Iterable<T2>)`
+- `MoreGatherers.zipWithIterable(Iterable<T2>, BiFunction<T1,T2>)`
+- `MoreGatherers.distinctBy(Function<T, R>)`
 - `MoreGatherers.distinctUntilChanged()`
 - `MoreGatherers.distinctUntilChanged(Function<T, R>)`
-- `MoreGatherers.distinctBy(Function<T, R>)`
