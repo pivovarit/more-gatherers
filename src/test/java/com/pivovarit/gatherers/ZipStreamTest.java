@@ -2,11 +2,14 @@ package com.pivovarit.gatherers;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static com.pivovarit.gatherers.MoreGatherers.*;
 import static java.util.Map.entry;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ZipStreamTest {
 
@@ -28,5 +31,10 @@ class ZipStreamTest {
             entry(2, "b"),
             entry(3, "c")
           );
+    }
+
+    @Test
+    void shouldRejectNullStream() {
+        assertThatThrownBy(() -> zip((Iterator<Object>) null)).isInstanceOf(NullPointerException.class);
     }
 }

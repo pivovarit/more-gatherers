@@ -38,7 +38,7 @@ public final class MoreGatherers {
     }
 
     public static <T, U> Gatherer<T, ?, T> distinctBy(Function<? super T, ? extends U> keyExtractor) {
-        Objects.requireNonNull(keyExtractor);
+        Objects.requireNonNull(keyExtractor, "keyExtractor can't be null");
         return Gatherer.ofSequential(
           () -> new HashSet<U>(),
           (state, element, downstream) -> {
@@ -51,27 +51,36 @@ public final class MoreGatherers {
     }
 
     public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zip(Stream<T2> other) {
+        Objects.requireNonNull(other, "other can't be null");
         return zip(other.iterator());
     }
 
     public static <T1, T2, R> Gatherer<T1, ?, R> zip(Stream<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
+        Objects.requireNonNull(other, "other can't be null");
+        Objects.requireNonNull(mapper, "mapper can't be null");
         return zip(other.iterator(), mapper);
     }
 
     public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zip(Collection<T2> other) {
+        Objects.requireNonNull(other, "other can't be null");
         return zip(other.iterator());
     }
 
     public static <T1, T2, R> Gatherer<T1, ?, R> zip(Collection<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
+        Objects.requireNonNull(other, "other can't be null");
+        Objects.requireNonNull(mapper, "mapper can't be null");
         return zip(other.iterator(), mapper);
     }
 
     public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zip(Iterator<T2> iterator) {
+        Objects.requireNonNull(iterator, "iterator can't be null");
         return zip(iterator, Map::entry);
     }
 
     public static <T1, T2, R> Gatherer<T1, ?, R> zip(Iterator<T2> iterator, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
-        Objects.requireNonNull(mapper);
+        Objects.requireNonNull(mapper, "mapper can't be null");
+        Objects.requireNonNull(iterator, "iterator can't be null");
+
         return Gatherer.ofSequential(
           () -> iterator,
           (state, element, downstream) -> {
