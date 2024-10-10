@@ -1,8 +1,10 @@
 package com.pivovarit.gatherers;
 
+import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
@@ -18,6 +20,25 @@ import static java.util.stream.Gatherer.ofSequential;
 public final class MoreGatherers {
 
     private MoreGatherers() {
+    }
+
+    public static <T> Gatherer<T, ?, T> last(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("number of elements can't be lower than one");
+        }
+        return Gatherer.ofSequential(
+          () -> new LinkedList<T>(),
+          Integrator.ofGreedy((state, element, _) -> {
+              if (state.size() == n) {
+                  state.removeFirst();
+                  state.addLast(element);
+              } else {
+                  state.addLast(element);
+              }
+              return true;
+          }),
+          (state, downstream) -> state.forEach(downstream::push)
+        );
     }
 
     public static <T> Gatherer<T, ?, T> sample(int n) {
