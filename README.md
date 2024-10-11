@@ -26,5 +26,6 @@ Provided `Gatherers`:
 - `MoreGatherers.zipWithIterable(Iterable<T2>)`
 - `MoreGatherers.zipWithIterable(Iterable<T2>, BiFunction<T1,T2>)`
 - `MoreGatherers.distinctBy(Function<T, R>)`
+- `MoreGatherers.distinctByKeepLast(Function<T, R>)`
 - `MoreGatherers.distinctUntilChanged()`
 - `MoreGatherers.distinctUntilChanged(Function<T, R>)`
