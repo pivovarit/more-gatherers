@@ -25,6 +25,8 @@ Provided `Gatherers`:
 - `MoreGatherers.zip(Stream<T2>, BiFunction<T1,T2>)`
 - `MoreGatherers.zipWithIterable(Iterable<T2>)`
 - `MoreGatherers.zipWithIterable(Iterable<T2>, BiFunction<T1,T2>)`
+- `MoreGatherers.zipWithIndex()`
+- `MoreGatherers.zipWithIndex(BiFunction<Long,T>)`
 - `MoreGatherers.distinctBy(Function<T, R>)`
 - `MoreGatherers.distinctByKeepLast(Function<T, R>)`
 - `MoreGatherers.distinctUntilChanged()`
