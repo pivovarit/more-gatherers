@@ -31,3 +31,9 @@ Provided `Gatherers`:
 - `MoreGatherers.distinctByKeepLast(Function<T, R>)`
 - `MoreGatherers.distinctUntilChanged()`
 - `MoreGatherers.distinctUntilChanged(Function<T, R>)`
+
+### Philosophy
+
+The primary goal of this library is to complement the existing Stream API by providing functionality that's currently missing, without duplicating features already available. While it is technically possible to create numerous custom Gatherers, this library focuses on offering only those that cannot be easily achieved using standard Stream API operations.
+
+The library is designed to be as lightweight as possible, with no external dependencies. It's implemented using core Java libraries and follows the same conventions as the standard Stream API while drawing inspiration names from Project Reactor's method names.
