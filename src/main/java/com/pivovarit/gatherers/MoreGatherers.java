@@ -45,22 +45,7 @@ public final class MoreGatherers {
 
     public static <T, U> Gatherer<T, ?, T> distinctUntilChanged(Function<? super T, ? extends U> keyExtractor) {
         Objects.requireNonNull(keyExtractor, "keyExtractor can't be null");
-        class State {
-            U value;
-            boolean hasValue;
-        }
-        return Gatherer.ofSequential(
-          State::new,
-          (state, element, downstream) -> {
-              U key = keyExtractor.apply(element);
-              if (!state.hasValue || !Objects.equals(state.value, key)) {
-                  state.value = key;
-                  state.hasValue = true;
-                  downstream.push(element);
-              }
-              return true;
-          }
-        );
+        return new DistinctUntilChangedGatherer<>(keyExtractor);
     }
 
     public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zip(Stream<T2> other) {
