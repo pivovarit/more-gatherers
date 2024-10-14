@@ -1,6 +1,5 @@
 package com.pivovarit.gatherers;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
@@ -27,16 +26,7 @@ public final class MoreGatherers {
     }
 
     public static <T, U> Gatherer<T, ?, T> distinctBy(Function<? super T, ? extends U> keyExtractor) {
-        Objects.requireNonNull(keyExtractor, "keyExtractor can't be null");
-        return Gatherer.ofSequential(
-          () -> new HashSet<U>(),
-          (state, element, downstream) -> {
-              if (state.add(keyExtractor.apply(element))) {
-                  downstream.push(element);
-              }
-              return true;
-          }
-        );
+        return new DistinctByGatherer<>(keyExtractor);
     }
 
     public static <T> Gatherer<T, ?, T> distinctUntilChanged() {
