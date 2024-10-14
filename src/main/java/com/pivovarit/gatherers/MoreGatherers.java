@@ -5,14 +5,10 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Gatherer;
 import java.util.stream.Stream;
-
-import static java.util.stream.Gatherer.Integrator.ofGreedy;
-import static java.util.stream.Gatherer.ofSequential;
 
 public final class MoreGatherers {
 
@@ -108,19 +104,7 @@ public final class MoreGatherers {
     }
 
     public static <T1, T2, R> Gatherer<T1, ?, R> zip(Iterator<T2> iterator, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
-        Objects.requireNonNull(mapper, "mapper can't be null");
-        Objects.requireNonNull(iterator, "iterator can't be null");
-
-        return Gatherer.ofSequential(
-          () -> iterator,
-          (state, element, downstream) -> {
-              if (state.hasNext()) {
-                  downstream.push(mapper.apply(element, state.next()));
-                  return true;
-              } else {
-                  return false;
-              }
-          });
+        return new ZipIteratorGatherer<>(iterator, mapper);
     }
 
     public static <T, R> Gatherer<T, ?, R> zipWithIndex(BiFunction<Long, ? super T, ? extends R> mapper) {
