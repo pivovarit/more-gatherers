@@ -4,31 +4,31 @@ import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 
-import static com.pivovarit.gatherers.MoreGatherers.sample;
+import static com.pivovarit.gatherers.MoreGatherers.sampling;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class SampleTest {
+class SamplingTest {
 
     @Test
     void shouldRejectInvalidSampleSize() {
-        assertThatThrownBy(() -> sample(0))
+        assertThatThrownBy(() -> sampling(0))
           .isInstanceOf(IllegalArgumentException.class)
-          .hasMessage("sample size can't be lower than 1");
+          .hasMessage("sampling frequency can't be lower than 1");
     }
 
     @Test
     void shouldSampleEmpty() throws Exception {
-        assertThat(Stream.empty().gather(sample(42))).isEmpty();
+        assertThat(Stream.empty().gather(sampling(42))).isEmpty();
     }
 
     @Test
     void shouldSampleEvery() {
-        assertThat(Stream.of(1,2,3).gather(sample(1))).containsExactly(1,2,3);
+        assertThat(Stream.of(1,2,3).gather(sampling(1))).containsExactly(1,2,3);
     }
 
     @Test
     void shouldSampleEveryOther() {
-        assertThat(Stream.of(1,2,3).gather(sample(2))).containsExactly(1,3);
+        assertThat(Stream.of(1,2,3).gather(sampling(2))).containsExactly(1,3);
     }
 }

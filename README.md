@@ -18,7 +18,7 @@ Whenever possible, the library follows Project Reactor's naming conventions.
 
 Provided `Gatherers`:
 - `MoreGatherers.last(int)`
-- `MoreGatherers.sample(int)`
+- `MoreGatherers.sampling(int)`
 - `MoreGatherers.zip(Iterator<T2>)`
 - `MoreGatherers.zip(Iterator<T2>, BiFunction<T1,T2>)`
 - `MoreGatherers.zip(Stream<T2>)`
