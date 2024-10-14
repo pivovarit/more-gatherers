@@ -28,6 +28,12 @@ class ZipStreamMapperTest {
     }
 
     @Test
+    void shouldZipWithShorter() {
+        assertThat(Stream.of(1, 2, 3).gather(zip(Stream.of("a", "b"), (i, s) -> i + s)))
+          .containsExactly("1a", "2b");
+    }
+
+    @Test
     void shouldRejectNullStream() {
         assertThatThrownBy(() -> zip((Stream<Object>) null, (i, _) -> i)).isInstanceOf(NullPointerException.class);
     }

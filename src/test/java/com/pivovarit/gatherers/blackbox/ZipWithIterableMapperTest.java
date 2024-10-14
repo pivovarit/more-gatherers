@@ -28,6 +28,12 @@ class ZipWithIterableMapperTest {
     }
 
     @Test
+    void shouldZipWithShorter() {
+        assertThat(Stream.of(1, 2, 3).gather(zipWithIterable(List.of("a", "b"), (i, s) -> i + s)))
+          .containsExactly("1a", "2b");
+    }
+
+    @Test
     void shouldRejectNullCollection() {
         assertThatThrownBy(() -> zipWithIterable(null, (i, _) -> i)).isInstanceOf(NullPointerException.class);
     }

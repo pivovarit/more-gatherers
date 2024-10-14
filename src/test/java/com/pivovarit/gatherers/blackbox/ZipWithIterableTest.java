@@ -33,6 +33,15 @@ class ZipWithIterableTest {
     }
 
     @Test
+    void shouldZipWithShorter() {
+        assertThat(Stream.of(1, 2, 3).gather(zipWithIterable(List.of("a", "b"))))
+          .containsExactly(
+            entry(1, "a"),
+            entry(2, "b")
+          );
+    }
+
+    @Test
     void shouldRejectNullCollection() {
         assertThatThrownBy(() -> zipWithIterable(null)).isInstanceOf(NullPointerException.class);
     }
