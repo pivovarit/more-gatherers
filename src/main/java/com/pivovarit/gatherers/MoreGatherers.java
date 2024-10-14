@@ -2,7 +2,6 @@ package com.pivovarit.gatherers;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiFunction;
@@ -24,19 +23,7 @@ public final class MoreGatherers {
     }
 
     public static <T, U> Gatherer<T, ?, T> distinctByKeepLast(Function<? super T, ? extends U> keyExtractor) {
-        Objects.requireNonNull(keyExtractor, "keyExtractor can't be null");
-        return Gatherer.ofSequential(
-          LinkedHashMap<U, T>::new,
-          (state, element, _) -> {
-              state.put(keyExtractor.apply(element), element);
-              return true;
-          },
-          (state, downstream) -> {
-              for (T element : state.values()) {
-                  downstream.push(element);
-              }
-          }
-        );
+        return new DistinctByKeepLastGatherer<>(keyExtractor);
     }
 
     public static <T, U> Gatherer<T, ?, T> distinctBy(Function<? super T, ? extends U> keyExtractor) {
