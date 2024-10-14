@@ -1,9 +1,8 @@
-package com.pivovarit.gatherers;
+package com.pivovarit.gatherers.blackbox;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static com.pivovarit.gatherers.MoreGatherers.zip;
