@@ -136,12 +136,6 @@ public final class MoreGatherers {
     }
 
     public static <T> Gatherer<T, ?, Map.Entry<Long, T>> zipWithIndex() {
-        return ofSequential(
-          AtomicLong::new,
-          ofGreedy((state, element, downstream) -> {
-              downstream.push(Map.entry(state.getAndIncrement(), element));
-              return true;
-          })
-        );
+        return new ZipWithIndexGatherer<>();
     }
 }
