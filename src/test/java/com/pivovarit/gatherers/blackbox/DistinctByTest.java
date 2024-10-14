@@ -1,4 +1,4 @@
-package com.pivovarit.gatherers;
+package com.pivovarit.gatherers.blackbox;
 
 import org.junit.jupiter.api.Test;
 
