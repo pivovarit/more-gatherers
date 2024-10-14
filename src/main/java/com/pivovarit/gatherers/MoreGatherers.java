@@ -144,14 +144,4 @@ public final class MoreGatherers {
           })
         );
     }
-
-    static <T> Gatherer<T, ?, T> noop() {
-        return ofSequential(
-          () -> null,
-          (_, element, downstream) -> {
-              downstream.push(element);
-              return true;
-          }
-        );
-    }
 }
