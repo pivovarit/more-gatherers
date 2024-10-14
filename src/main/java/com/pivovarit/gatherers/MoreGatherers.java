@@ -124,15 +124,7 @@ public final class MoreGatherers {
     }
 
     public static <T, R> Gatherer<T, ?, R> zipWithIndex(BiFunction<Long, ? super T, ? extends R> mapper) {
-        Objects.requireNonNull(mapper, "mapper can't be null");
-
-        return ofSequential(
-          AtomicLong::new,
-          ofGreedy((state, element, downstream) -> {
-              downstream.push(mapper.apply(state.getAndIncrement(), element));
-              return true;
-          })
-        );
+        return new ZipWithIndexMappingGatherer<>(mapper);
     }
 
     public static <T> Gatherer<T, ?, Map.Entry<Long, T>> zipWithIndex() {
