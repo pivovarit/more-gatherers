@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Gatherer;
-import java.util.stream.Gatherer.Integrator;
 import java.util.stream.Stream;
 
 import static java.util.stream.Gatherer.Integrator.ofGreedy;
@@ -24,21 +23,8 @@ public final class MoreGatherers {
         return new LastGatherer<>(n);
     }
 
-    public static <T> Gatherer<T, ?, T> sample(int n) {
-        if (n <= 0) {
-            throw new IllegalArgumentException("sample size can't be lower than 1");
-        }
-        return n == 1
-          ? noop()
-          : Gatherer.ofSequential(
-          () -> new AtomicLong(),
-          Integrator.ofGreedy((state, element, downstream) -> {
-                if (state.getAndIncrement() % n == 0) {
-                    downstream.push(element);
-                }
-                return true;
-            }
-          ));
+    public static <T> Gatherer<T, ?, T> sampling(int n) {
+        return new SamplingGatherer<>(n);
     }
 
     public static <T, U> Gatherer<T, ?, T> distinctByKeepLast(Function<? super T, ? extends U> keyExtractor) {
