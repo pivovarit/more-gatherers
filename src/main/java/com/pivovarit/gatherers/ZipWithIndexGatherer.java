@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Supplier;
 import java.util.stream.Gatherer;
 
-record ZipWithIndexGatherer<T>() implements Gatherer<T, AtomicLong, Map.Entry<Long, T>> {
+record ZipWithIndexGatherer<T>() implements Gatherer<T, AtomicLong, Map.Entry<T, Long>> {
 
     @Override
     public Supplier<AtomicLong> initializer() {
@@ -13,9 +13,9 @@ record ZipWithIndexGatherer<T>() implements Gatherer<T, AtomicLong, Map.Entry<Lo
     }
 
     @Override
-    public Integrator<AtomicLong, T, Map.Entry<Long, T>> integrator() {
+    public Integrator<AtomicLong, T, Map.Entry<T, Long>> integrator() {
         return Integrator.ofGreedy((state, element, downstream) -> {
-            downstream.push(Map.entry(state.getAndIncrement(), element));
+            downstream.push(Map.entry(element, state.getAndIncrement()));
             return true;
         });
     }
