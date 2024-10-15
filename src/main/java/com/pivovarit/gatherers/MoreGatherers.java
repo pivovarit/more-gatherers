@@ -1,6 +1,8 @@
 package com.pivovarit.gatherers;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiFunction;
@@ -216,5 +218,29 @@ public final class MoreGatherers {
      */
     public static <T> Gatherer<T, ?, Map.Entry<T, Long>> zipWithIndex() {
         return new ZipWithIndexGatherer<>();
+    }
+
+    /**
+     * Creates a {@link Gatherer} that collects elements into sliding windows of a specified size.
+     * Each window captures a subset of elements from the input, and windows slide by a specified step.
+     *
+     * <p>For example, if the window size is 3 and the step is 1, the gatherer will collect
+     * windows of size 3, sliding by 1 element at a time. This means each subsequent window overlaps
+     * with the previous one by two elements.</p>
+     *
+     * <p>Common use cases include moving averages, trend analysis, and any scenario requiring
+     * overlapping or rolling window operations on a list of elements.</p>
+     *
+     * @param <TR>       the type of elements in the input and output list
+     * @param windowSize the size of each window (must be a positive integer)
+     * @param step       the number of elements to slide the window by (must be a positive integer)
+     *
+     * @return a {@link Gatherer} that collects elements into sliding windows
+     *
+     * @throws IllegalArgumentException if {@code windowSize} is less than one or {@code step} is less than zero, or greater than {@code windowSize}
+     * @apiNote this {@link Gatherer} extends {@link java.util.stream.Gatherers#windowSliding(int)} by allowing to customize the step
+     */
+    public static <TR> Gatherer<TR, ?, List<TR>> windowSliding(int windowSize, int step) {
+        return new WindowSlidingGatherer<>(windowSize, step);
     }
 }
