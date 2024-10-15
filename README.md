@@ -17,20 +17,34 @@ Java's Stream API is a powerful tool for processing collections of data. However
 Whenever possible, the library follows Project Reactor's naming conventions.
 
 Provided `Gatherers`:
-- `MoreGatherers.last(int)`: takes last `n` elements from the stream
-- `MoreGatherers.sampling(int)`: takes every `n`-th element from the stream
-- `MoreGatherers.zip(Iterator<T2>)`: zips `Stream` elements with elements from the provided `Iterator`
-- `MoreGatherers.zip(Iterator<T2>, BiFunction<T1,T2>)`: zips `Stream` elements with elements from the provided `Iterator` using a custom zipper function
-- `MoreGatherers.zip(Stream<T2>)`: zips `Stream` elements with elements from the provided `Stream`
-- `MoreGatherers.zip(Stream<T2>, BiFunction<T1,T2>)`: zips `Stream` elements with elements from the provided `Stream` using a custom zipper function
-- `MoreGatherers.zipWithIterable(Iterable<T2>)`: zips `Stream` elements with elements from the provided `Iterable`
-- `MoreGatherers.zipWithIterable(Iterable<T2>, BiFunction<T1,T2>)`: zips elements with elements from the provided `Iterable` using a custom zipper function
-- `MoreGatherers.zipWithIndex()`: zips `Stream` elements with their index
-- `MoreGatherers.zipWithIndex(BiFunction<Long,T>)`: zips `Stream` elements with their index using a custom zipper function
-- `MoreGatherers.distinctBy(Function<T, R>)`: takes distinct elements based on a key extractor function
-- `MoreGatherers.distinctByKeepLast(Function<T, R>)`: takes distinct elements based on a key extractor function, keeping the last occurrence
-- `MoreGatherers.distinctUntilChanged()`: takes elements until a change is detected
-- `MoreGatherers.distinctUntilChanged(Function<T, R>)`: takes elements until a change is detected based on a key extractor function
+- `MoreGatherers.last(int)`
+  - takes last `n` elements from the stream
+- `MoreGatherers.sampling(int)`
+  - takes every `n`-th element from the stream
+- `MoreGatherers.zip(Iterator<T2>)`
+  - zips `Stream` elements with elements from the provided `Iterator`
+- `MoreGatherers.zip(Iterator<T2>, BiFunction<T1,T2>)`
+  - zips `Stream` elements with elements from the provided `Iterator` using a custom zipper function
+- `MoreGatherers.zip(Stream<T2>)`
+  - zips `Stream` elements with elements from the provided `Stream`
+- `MoreGatherers.zip(Stream<T2>, BiFunction<T1,T2>)`
+  - zips `Stream` elements with elements from the provided `Stream` using a custom zipper function
+- `MoreGatherers.zipWithIterable(Iterable<T2>)`
+  - zips `Stream` elements with elements from the provided `Iterable`
+- `MoreGatherers.zipWithIterable(Iterable<T2>, BiFunction<T1,T2>)`
+  - zips elements with elements from the provided `Iterable` using a custom zipper function
+- `MoreGatherers.zipWithIndex()`
+  - zips `Stream` elements with their index
+- `MoreGatherers.zipWithIndex(BiFunction<Long,T>)`
+  - zips `Stream` elements with their index using a custom zipper function
+- `MoreGatherers.distinctBy(Function<T, R>)`
+  - takes distinct elements based on a key extractor function
+- `MoreGatherers.distinctByKeepLast(Function<T, R>)`
+  - takes distinct elements based on a key extractor function, keeping the last occurrence
+- `MoreGatherers.distinctUntilChanged()`
+  - takes elements until a change is detected
+- `MoreGatherers.distinctUntilChanged(Function<T, R>)`
+  - takes elements until a change is detected based on a key extractor function
 
 ### Philosophy
 
