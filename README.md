@@ -45,6 +45,8 @@ Provided `Gatherers`:
   - takes elements until a change is detected
 - `MoreGatherers.distinctUntilChanged(Function<T, R>)`
   - takes elements until a change is detected based on a key extractor function
+- `MoreGatherers.windowSliding(int, int)`
+  - creates a sliding window of a fixed size with a fixed step, extends `Gatherers.windowSliding(int)` by adding a step parameter 
 
 ### Philosophy
 
