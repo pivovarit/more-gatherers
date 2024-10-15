@@ -22,7 +22,7 @@ public final class MoreGatherers {
      * @return a {@link Gatherer} that collects the last {@code n} elements
      */
     public static <T> Gatherer<T, ?, T> last(int n) {
-        return new LastGatherer<>(n);
+        return LastGatherer.size(n);
     }
 
     /**
