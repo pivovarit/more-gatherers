@@ -20,9 +20,9 @@ class ZipWithIndexTest {
         assertThat(Stream.of("a", "b", "c")
           .gather(zipWithIndex()))
           .containsExactly(
-            entry(0L, "a"),
-            entry(1L, "b"),
-            entry(2L, "c")
+            entry("a", 0L),
+            entry("b", 1L),
+            entry("c", 2L)
           );
     }
 }

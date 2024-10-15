@@ -214,7 +214,7 @@ public final class MoreGatherers {
      *
      * @return a {@link Gatherer} that pairs elements with their corresponding index
      */
-    public static <T> Gatherer<T, ?, Map.Entry<Long, T>> zipWithIndex() {
+    public static <T> Gatherer<T, ?, Map.Entry<T, Long>> zipWithIndex() {
         return new ZipWithIndexGatherer<>();
     }
 }
