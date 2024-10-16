@@ -126,7 +126,6 @@ public final class MoreGatherers {
      */
     public static <T1, T2, R> Gatherer<T1, ?, R> zip(Stream<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
         Objects.requireNonNull(other, "other can't be null");
-        Objects.requireNonNull(mapper, "mapper can't be null");
         return zip(other.iterator(), mapper);
     }
 
@@ -174,7 +173,6 @@ public final class MoreGatherers {
      * @return a {@link Gatherer} that pairs elements from the two iterators
      */
     public static <T1, T2> Gatherer<T1, ?, Map.Entry<T1, T2>> zip(Iterator<T2> iterator) {
-        Objects.requireNonNull(iterator, "iterator can't be null");
         return zip(iterator, Map::entry);
     }
 
