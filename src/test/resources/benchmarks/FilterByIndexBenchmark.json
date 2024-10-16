@@ -1,0 +1,116 @@
+[
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.FilterByIndexBenchmark.filterByIndex",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-23/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "--enable-preview",
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA Ultimate.app/Contents/lib/idea_rt.jar=57563:/Users/pivovarit/Applications/IntelliJ IDEA Ultimate.app/Contents/bin",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "23",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "23+37-2369",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 24.892622992010878,
+            "scoreError" : 2.171902468249229,
+            "scoreConfidence" : [
+                22.72072052376165,
+                27.064525460260107
+            ],
+            "scorePercentiles" : {
+                "0.0" : 24.551089114037865,
+                "50.0" : 24.67685263461223,
+                "90.0" : 25.89673224823203,
+                "95.0" : 25.89673224823203,
+                "99.0" : 25.89673224823203,
+                "99.9" : 25.89673224823203,
+                "99.99" : 25.89673224823203,
+                "99.999" : 25.89673224823203,
+                "99.9999" : 25.89673224823203,
+                "100.0" : 25.89673224823203
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    25.89673224823203,
+                    24.551089114037865,
+                    24.64380175941238,
+                    24.67685263461223,
+                    24.694639203759873
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.FilterByIndexBenchmark.zipWithIndexThenFilter",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-23/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "--enable-preview",
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA Ultimate.app/Contents/lib/idea_rt.jar=57563:/Users/pivovarit/Applications/IntelliJ IDEA Ultimate.app/Contents/bin",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "23",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "23+37-2369",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 17.311580632178348,
+            "scoreError" : 0.3356105307010133,
+            "scoreConfidence" : [
+                16.975970101477333,
+                17.647191162879363
+            ],
+            "scorePercentiles" : {
+                "0.0" : 17.158261528505264,
+                "50.0" : 17.33638831156214,
+                "90.0" : 17.372805550060715,
+                "95.0" : 17.372805550060715,
+                "99.0" : 17.372805550060715,
+                "99.9" : 17.372805550060715,
+                "99.99" : 17.372805550060715,
+                "99.999" : 17.372805550060715,
+                "99.9999" : 17.372805550060715,
+                "100.0" : 17.372805550060715
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    17.158261528505264,
+                    17.33638831156214,
+                    17.33402194561894,
+                    17.356425825144683,
+                    17.372805550060715
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+
