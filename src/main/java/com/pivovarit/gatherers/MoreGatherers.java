@@ -1,11 +1,11 @@
 package com.pivovarit.gatherers;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.stream.Gatherer;
 import java.util.stream.Stream;
@@ -240,7 +240,27 @@ public final class MoreGatherers {
      * @throws IllegalArgumentException if {@code windowSize} is less than one or {@code step} is less than zero, or greater than {@code windowSize}
      * @apiNote this {@link Gatherer} extends {@link java.util.stream.Gatherers#windowSliding(int)} by allowing to customize the step
      */
-    public static <TR> Gatherer<TR, ?, List<TR>> windowSliding(int windowSize, int step) {
+    public static <T> Gatherer<T, ?, List<T>> windowSliding(int windowSize, int step) {
         return new WindowSlidingGatherer<>(windowSize, step);
+    }
+
+    /**
+     * Creates a {@link Gatherer} that filters elements based on their index and value using a given {@link BiPredicate}.
+     * The provided {@code BiPredicate} is applied to each element of the source, along with its corresponding index
+     * (starting from 0). Only the elements that satisfy the predicate (i.e., for which the predicate returns {@code true})
+     * are retained.
+     *
+     * @param <T>       the type of elements to be filtered
+     * @param predicate a {@link BiPredicate} that takes the index and element as input, and returns {@code true} to retain
+     *                  the element, or {@code false} to exclude it
+     *
+     * @return a {@link Gatherer} that applies the given filter based on element index and value
+     *
+     * @apiNote The same result can be achieved by using {@code zipWithIndex()}, {@code filter()}, and {@code map()}.
+     * However, this method is significantly faster because it avoids the intermediate steps and directly filters
+     * elements based on their index.
+     */
+    public static <T> Gatherer<T, ?, T> byIndex(BiPredicate<Long, ? super T> predicate) {
+        return new FilterByIndexGatherer<>(predicate);
     }
 }
