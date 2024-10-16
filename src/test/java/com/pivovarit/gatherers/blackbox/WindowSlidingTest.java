@@ -26,8 +26,21 @@ class WindowSlidingTest {
     }
 
     @Test
+    void shouldRejectInvalidWindowSizeAndStep() {
+        assertThatThrownBy(() -> MoreGatherers.windowSliding(3, 4))
+          .isInstanceOf(IllegalArgumentException.class)
+          .hasMessage("'step' must be less than or equal to 'windowSize'");
+    }
+
+    @Test
     void shouldWindowSlidingEmpty() {
         assertThat(Stream.empty().gather(MoreGatherers.windowSliding(2, 1))).isEmpty();
+    }
+
+    @Test
+    void shouldWindowSlidingWithWindowSizeGreaterThanStreamSize() {
+        assertThat(Stream.of(1, 2, 3).gather(MoreGatherers.windowSliding(4, 1)))
+          .containsExactly(of(1, 2, 3));
     }
 
     @Test
