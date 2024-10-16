@@ -231,7 +231,7 @@ public final class MoreGatherers {
      * <p>Common use cases include moving averages, trend analysis, and any scenario requiring
      * overlapping or rolling window operations on a list of elements.</p>
      *
-     * @param <TR>       the type of elements in the input and output list
+     * @param <T>       the type of elements in the input and output list
      * @param windowSize the size of each window (must be a positive integer)
      * @param step       the number of elements to slide the window by (must be a positive integer)
      *
