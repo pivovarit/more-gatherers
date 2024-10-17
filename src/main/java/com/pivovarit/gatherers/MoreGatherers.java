@@ -10,6 +10,7 @@ import java.util.function.Function;
 import java.util.stream.Gatherer;
 import java.util.stream.Stream;
 
+/// Contains various [java.util.stream.Gatherer] implementations expanding [java.util.stream.Stream] API functionality
 public final class MoreGatherers {
 
     private MoreGatherers() {
@@ -221,6 +222,8 @@ public final class MoreGatherers {
     /**
      * Creates a {@link Gatherer} that collects elements into sliding windows of a specified size.
      * Each window captures a subset of elements from the input, and windows slide by a specified step.
+     * <p>
+     * This {@link Gatherer} extends {@link java.util.stream.Gatherers#windowSliding(int)} by allowing to customize the step
      *
      * <p>For example, if the window size is 3 and the step is 1, the gatherer will collect
      * windows of size 3, sliding by 1 element at a time. This means each subsequent window overlaps
@@ -229,14 +232,13 @@ public final class MoreGatherers {
      * <p>Common use cases include moving averages, trend analysis, and any scenario requiring
      * overlapping or rolling window operations on a list of elements.</p>
      *
-     * @param <T>       the type of elements in the input and output list
+     * @param <T>        the type of elements in the input and output list
      * @param windowSize the size of each window (must be a positive integer)
      * @param step       the number of elements to slide the window by (must be a positive integer)
      *
      * @return a {@link Gatherer} that collects elements into sliding windows
      *
      * @throws IllegalArgumentException if {@code windowSize} is less than one or {@code step} is less than zero, or greater than {@code windowSize}
-     * @apiNote this {@link Gatherer} extends {@link java.util.stream.Gatherers#windowSliding(int)} by allowing to customize the step
      */
     public static <T> Gatherer<T, ?, List<T>> windowSliding(int windowSize, int step) {
         return new WindowSlidingGatherer<>(windowSize, step);
@@ -247,16 +249,16 @@ public final class MoreGatherers {
      * The provided {@code BiPredicate} is applied to each element of the source, along with its corresponding index
      * (starting from 0). Only the elements that satisfy the predicate (i.e., for which the predicate returns {@code true})
      * are retained.
+     * <p>
+     * The same result can be achieved by using {@code zipWithIndex()}, {@code filter()}, and {@code map()}.
+     * However, this method is significantly faster because it avoids the intermediate steps and directly filters
+     * elements based on their index.
      *
      * @param <T>       the type of elements to be filtered
      * @param predicate a {@link BiPredicate} that takes the index and element as input, and returns {@code true} to retain
      *                  the element, or {@code false} to exclude it
      *
      * @return a {@link Gatherer} that applies the given filter based on element index and value
-     *
-     * @apiNote The same result can be achieved by using {@code zipWithIndex()}, {@code filter()}, and {@code map()}.
-     * However, this method is significantly faster because it avoids the intermediate steps and directly filters
-     * elements based on their index.
      */
     public static <T> Gatherer<T, ?, T> byIndex(BiPredicate<Long, ? super T> predicate) {
         return new FilterByIndexGatherer<>(predicate);

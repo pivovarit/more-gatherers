@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <licenses>
         <license>
@@ -19,17 +20,19 @@
     <packaging>jar</packaging>
 
     <name>gatheres</name>
-    <description>Missing Stream API functionality you always longed for - provided via Stream API Gatherers</description>
+    <description>Missing Stream API functionality you always longed for - provided via Stream API Gatherers
+    </description>
 
     <scm>
         <url>https://github.com/pivovarit/gatherers</url>
         <connection>scm:git:git@github.com:pivovarit/gatherers.git</connection>
         <developerConnection>scm:git:git@github.com:pivovarit/gatherers.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.javadoc.plugin.version>3.10.1</maven.javadoc.plugin.version>
         <junit.version>5.11.2</junit.version>
         <assertj.version>3.26.3</assertj.version>
         <jmh.version>1.37</jmh.version>
@@ -46,8 +49,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>23</source>
-                    <target>23</target>
+                    <release>23</release>
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
@@ -150,6 +152,10 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <release>23</release>
+                            <additionalOptions>--enable-preview</additionalOptions>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -263,6 +269,34 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>doclint</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven.javadoc.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <release>23</release>
+                            <additionalOptions>--enable-preview</additionalOptions>
+                            <failOnWarnings>true</failOnWarnings>
+                            <failOnError>true</failOnError>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
 
     </profiles>
 
