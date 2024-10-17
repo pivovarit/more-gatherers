@@ -12,7 +12,7 @@ Missing Stream API functionality you always longed for - provided via `Gatherers
 
 ### Overview
 
-Java's Stream API is a powerful tool for processing collections of data. However, it lacks some functionality that could make it even more powerful. This library aims to fill that gap by providing a set of `Gatherers` that can be used to collect data from a stream in a more flexible way.
+Java's Stream API is a powerful tool for processing collections of data. However, it lacks some functionality that could make it even more powerful. This library aims to fill that gap by providing a set of `Gatherers` that can be used to collect data from a stream more flexibly.
 
 Whenever possible, the library follows Project Reactor's naming conventions.
 
@@ -52,6 +52,6 @@ Provided `Gatherers`:
 
 ### Philosophy
 
-The primary goal of this library is to complement the existing Stream API by providing functionality that's currently missing, without duplicating features already available. While it is technically possible to create numerous custom Gatherers, this library focuses on offering only those that cannot be easily achieved using standard Stream API operations.
+The primary goal of this library is to complement the existing Stream API by providing functionality that's currently missing without duplicating features already available. While it is technically possible to create numerous custom Gatherers, this library focuses on offering only those that cannot be easily achieved using standard Stream API operations.
 
-The library is designed to be as lightweight as possible, with no external dependencies. It's implemented using core Java libraries and follows the same conventions as the standard Stream API while drawing inspiration names from Project Reactor's method names.
+The library is designed to be as lightweight as possible, with no external dependencies. It's implemented using core Java libraries and follows the same conventions as the standard Stream API, drawing inspiration from Project Reactor's method names.
