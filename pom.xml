@@ -13,20 +13,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.pivovarit</groupId>
-    <artifactId>gatherers</artifactId>
+    <artifactId>more-gatherers</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <url>https://github.com/pivovarit/gatherers</url>
+    <url>https://github.com/pivovarit/more-gatherers</url>
 
     <packaging>jar</packaging>
 
-    <name>gatheres</name>
-    <description>Missing Stream API functionality you always longed for - provided via Stream API Gatherers
-    </description>
+    <name>more-gatherers</name>
+    <description>Missing Stream API functionality you always longed for - provided via Stream API Gatherers</description>
 
     <scm>
-        <url>https://github.com/pivovarit/gatherers</url>
-        <connection>scm:git:git@github.com:pivovarit/gatherers.git</connection>
-        <developerConnection>scm:git:git@github.com:pivovarit/gatherers.git</developerConnection>
+        <url>https://github.com/pivovarit/more-gatherers</url>
+        <connection>scm:git:git@github.com:pivovarit/more-gatherers.git</connection>
+        <developerConnection>scm:git:git@github.com:pivovarit/more-gatherers.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -111,7 +110,7 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/pivovarit/gatherers/issues</url>
+        <url>https://github.com/pivovarit/more-gatherers/issues</url>
     </issueManagement>
 
     <developers>
