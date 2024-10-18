@@ -41,7 +41,11 @@ final class LastGatherer {
 
         @Override
         public BiConsumer<AppendOnlyCircularBuffer<T>, Downstream<? super T>> finisher() {
-            return (state, downstream) -> state.forEach(downstream::push);
+            return (state, downstream) -> {
+                if (!downstream.isRejecting()) {
+                    state.forEach(downstream::push);
+                }
+            };
         }
 
         static class AppendOnlyCircularBuffer<T> {
@@ -90,7 +94,7 @@ final class LastGatherer {
         @Override
         public BiConsumer<ValueHolder<T>, Downstream<? super T>> finisher() {
             return (state, downstream) -> {
-                if (state.isSet) {
+                if (state.isSet && !downstream.isRejecting()) {
                     downstream.push(state.value);
                 }
             };
