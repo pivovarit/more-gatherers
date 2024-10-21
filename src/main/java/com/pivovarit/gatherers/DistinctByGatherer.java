@@ -21,7 +21,7 @@ record DistinctByGatherer<T, U>(Function<? super T, ? extends U> keyExtractor) i
     public Integrator<HashSet<U>, T, T> integrator() {
         return (state, element, downstream) -> {
             if (state.add(keyExtractor.apply(element))) {
-                downstream.push(element);
+                return downstream.push(element);
             }
             return true;
         };

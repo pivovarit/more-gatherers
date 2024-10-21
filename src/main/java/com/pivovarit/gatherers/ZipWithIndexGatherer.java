@@ -14,9 +14,6 @@ record ZipWithIndexGatherer<T>() implements Gatherer<T, AtomicLong, Map.Entry<T,
 
     @Override
     public Integrator<AtomicLong, T, Map.Entry<T, Long>> integrator() {
-        return Integrator.ofGreedy((state, element, downstream) -> {
-            downstream.push(Map.entry(element, state.getAndIncrement()));
-            return true;
-        });
+        return Integrator.ofGreedy((state, element, downstream) -> downstream.push(Map.entry(element, state.getAndIncrement())));
     }
 }
