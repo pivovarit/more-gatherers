@@ -21,7 +21,7 @@ record SamplingGatherer<T>(int n) implements Gatherer<T, AtomicLong, T> {
     public Integrator<AtomicLong, T, T> integrator() {
         return Integrator.ofGreedy((state, element, downstream) -> {
             if (state.getAndIncrement() % n == 0) {
-                downstream.push(element);
+                return downstream.push(element);
             }
             return true;
         });

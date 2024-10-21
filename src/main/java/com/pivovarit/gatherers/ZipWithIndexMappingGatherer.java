@@ -20,9 +20,6 @@ record ZipWithIndexMappingGatherer<T, R>(BiFunction<Long, ? super T, ? extends R
 
     @Override
     public Integrator<AtomicLong, T, R> integrator() {
-        return Integrator.ofGreedy((state, element, downstream) -> {
-            downstream.push(mapper.apply(state.getAndIncrement(), element));
-            return true;
-        });
+        return Integrator.ofGreedy((state, element, downstream) -> downstream.push(mapper.apply(state.getAndIncrement(), element)));
     }
 }

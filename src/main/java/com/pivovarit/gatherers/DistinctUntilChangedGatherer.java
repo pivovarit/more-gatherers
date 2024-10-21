@@ -24,7 +24,7 @@ record DistinctUntilChangedGatherer<T, U>(
             if (!state.hasValue || !Objects.equals(state.value, key)) {
                 state.value = key;
                 state.hasValue = true;
-                downstream.push(element);
+                return downstream.push(element);
             }
             return true;
         };

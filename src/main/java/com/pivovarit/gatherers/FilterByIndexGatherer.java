@@ -21,7 +21,7 @@ record FilterByIndexGatherer<T>(BiPredicate<Long, ? super T> predicate) implemen
     public Integrator<AtomicLong, T, T> integrator() {
         return Integrator.ofGreedy((seq, t, downstream) -> {
             if (predicate.test(seq.getAndIncrement(), t)) {
-                downstream.push(t);
+                return downstream.push(t);
             }
             return true;
         });
