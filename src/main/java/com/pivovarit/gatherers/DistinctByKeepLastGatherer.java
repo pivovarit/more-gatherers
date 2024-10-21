@@ -21,10 +21,10 @@ record DistinctByKeepLastGatherer<T, U>(
 
     @Override
     public Integrator<LinkedHashMap<U, T>, T, T> integrator() {
-        return (state, element, _) -> {
+        return Integrator.ofGreedy((state, element, _) -> {
             state.put(keyExtractor.apply(element), element);
             return true;
-        };
+        });
     }
 
     @Override
