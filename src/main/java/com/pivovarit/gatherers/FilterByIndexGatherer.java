@@ -19,11 +19,6 @@ record FilterByIndexGatherer<T>(BiPredicate<Long, ? super T> predicate) implemen
 
     @Override
     public Integrator<AtomicLong, T, T> integrator() {
-        return Integrator.ofGreedy((seq, t, downstream) -> {
-            if (predicate.test(seq.getAndIncrement(), t)) {
-                return downstream.push(t);
-            }
-            return true;
-        });
+        return Integrator.ofGreedy((seq, t, downstream) -> predicate.test(seq.getAndIncrement(), t) && downstream.push(t));
     }
 }
