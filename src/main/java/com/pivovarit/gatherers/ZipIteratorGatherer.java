@@ -25,9 +25,8 @@ record ZipIteratorGatherer<T1, T2, R>(Iterator<T2> iterator, BiFunction<? super 
             if (state.hasNext()) {
                 downstream.push(mapper.apply(element, state.next()));
                 return true;
-            } else {
-                return false;
             }
+            return true;
         };
     }
 }
