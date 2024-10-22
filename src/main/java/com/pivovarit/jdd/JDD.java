@@ -2,10 +2,15 @@ package com.pivovarit.jdd;
 
 /**
  * JEP 461: Breathing New Life into Java Stream API
- * {@code s/461/485/g}
+ * {@code s/461/485/g
+ * <p>
+ * @author pivovarit
  */
 class JDD {
-    public static void main(String[] args) {
-        System.out.println("TODO");
+    record E1() {
+        public static void main(String[] args) {
+
+        }
     }
+
 }
