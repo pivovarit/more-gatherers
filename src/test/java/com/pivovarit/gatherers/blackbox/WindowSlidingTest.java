@@ -52,6 +52,6 @@ class WindowSlidingTest {
     @Test
     void shouldWindowSlidingWithStep2() {
         assertThat(Stream.of(1, 2, 3, 4, 5).gather(MoreGatherers.windowSliding(2, 2)))
-          .containsExactly(of(1, 2), of(3, 4));
+          .containsExactly(of(1, 2), of(3, 4), of(5));
     }
 }

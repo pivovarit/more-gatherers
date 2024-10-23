@@ -38,12 +38,13 @@ record WindowSlidingGatherer<T>(int windowSize, int step)
     }
 
     class SlidingWindow {
-        Object[] window = new Object[windowSize];
-        int at = 0;
-        boolean firstWindow = true;
+        private Object[] window = new Object[windowSize];
+        private int at = 0;
+        private boolean emitted = false;
 
         boolean integrate(T element, Downstream<? super List<T>> downstream) {
             window[at++] = element;
+            emitted = false;
             if (at < windowSize) {
                 return true;
             } else {
@@ -52,17 +53,18 @@ record WindowSlidingGatherer<T>(int windowSize, int step)
                 System.arraycopy(oldWindow, step, newWindow, 0, windowSize - step);
                 window = newWindow;
                 at -= step;
-                firstWindow = false;
+                emitted = true;
                 return downstream.push((List<T>) Arrays.asList(oldWindow));
             }
         }
 
         void finish(Downstream<? super List<T>> downstream) {
-            if (firstWindow && at > 0 && !downstream.isRejecting()) {
+            if (!emitted && at > 0 && !downstream.isRejecting()) {
                 var lastWindow = new Object[at];
                 System.arraycopy(window, 0, lastWindow, 0, at);
                 window = null;
                 at = 0;
+                emitted = true;
                 downstream.push((List<T>) Arrays.asList(lastWindow));
             }
         }
