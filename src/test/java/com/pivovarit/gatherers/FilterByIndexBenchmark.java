@@ -14,7 +14,7 @@ public class FilterByIndexBenchmark {
     @Benchmark
     public List<Integer> filterByIndex() {
         return source.stream()
-          .gather(MoreGatherers.byIndex((i, _) -> i % 2 == 0))
+          .gather(MoreGatherers.filteringByIndex((i, _) -> i % 2 == 0))
           .toList();
     }
 
