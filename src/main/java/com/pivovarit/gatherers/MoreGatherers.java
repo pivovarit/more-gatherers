@@ -260,7 +260,7 @@ public final class MoreGatherers {
      *
      * @return a {@link Gatherer} that applies the given filter based on element index and value
      */
-    public static <T> Gatherer<T, ?, T> byIndex(BiPredicate<Long, ? super T> predicate) {
+    public static <T> Gatherer<T, ?, T> filteringByIndex(BiPredicate<Long, ? super T> predicate) {
         return new FilterByIndexGatherer<>(predicate);
     }
 }
