@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '23' ]
+        java: [ '24-ea' ]
         architecture: [ 'x64' ]
     name: Build with JDK ${{ matrix.java }} on ${{ matrix.architecture }}
     steps:
@@ -40,7 +40,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '23'
+          java-version: '24-ea'
           architecture: 'x64'
           cache: 'maven'
 
