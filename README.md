@@ -49,6 +49,8 @@ Provided `Gatherers`:
   - creates a sliding window of a fixed size with a fixed step, extends `Gatherers.windowSliding(int)` by adding a step parameter
 - `MoreGatherers.filteringByIndex(BiPredicate<Long, T>)`
   - filters elements based on their index and value
+- `MoreGatherers.groupingBy(Function<T, K>, Collector<T, ?, R>)`
+  - groups elements by a key extractor function and applies a custom collector
 
 ### Philosophy
 
