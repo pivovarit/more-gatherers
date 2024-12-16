@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Gatherer;
 import java.util.stream.Stream;
 
@@ -262,5 +264,33 @@ public final class MoreGatherers {
      */
     public static <T> Gatherer<T, ?, T> filteringByIndex(BiPredicate<Long, ? super T> predicate) {
         return new FilterByIndexGatherer<>(predicate);
+    }
+
+    /**
+     * Creates a {@link Gatherer} that groups elements based on a key extracted by the given {@code classifier}.
+     *
+     * @param classifier the function used to extract the key for grouping elements
+     * @param collector  the {@link Collector} used to accumulate the elements of each group
+     * @param <T>        the type of the input elements
+     * @param <K>        the type of the key extracted from the input elements
+     * @param <R>        the type of the result of the collector
+     *
+     * @return a {@link Gatherer} that groups elements based on the extracted key
+     */
+    public static <T, K, R> Gatherer<T, ?, Map.Entry<K, R>> groupingBy(Function<? super T, ? extends K> classifier, Collector<? super T, ?, ? extends R> collector) {
+        return new GroupingByGatherer<>(classifier, collector);
+    }
+
+    /**
+     * Creates a {@link Gatherer} that groups elements based on a key extracted by the given {@code classifier}.
+     *
+     * @param classifier the function used to extract the key for grouping elements
+     * @param <T>        the type of the input elements
+     * @param <K>        the type of the key extracted from the input elements
+     *
+     * @return a {@link Gatherer} that groups elements based on the extracted key
+     */
+    public static <T, K> Gatherer<T, ?, Map.Entry<K, List<T>>> groupingBy(Function<? super T, ? extends K> classifier) {
+        return groupingBy(classifier, Collectors.toList());
     }
 }
