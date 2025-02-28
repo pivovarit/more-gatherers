@@ -4,11 +4,9 @@ Missing Stream API functionality you always longed for - provided via `Gatherers
 
 [![build](https://github.com/pivovarit/more-gatherers/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/pivovarit/more-gatherers/actions/workflows/build.yml)
 [![pitest](https://github.com/pivovarit/more-gatherers/actions/workflows/pitest.yml/badge.svg?branch=main)](https://pivovarit.github.io/more-gatherers)
-![Maven Central Version](https://img.shields.io/maven-central/v/com.pivovarit/more-gatherers)
+[![Maven Central Version](https://img.shields.io/maven-central/v/com.pivovarit/more-gatherers)](https://central.sonatype.com/artifact/com.pivovarit/more-gatherers/versions)
 
 [![Stargazers over time](https://starchart.cc/pivovarit/more-gatherers.svg?variant=adaptive)](https://starchart.cc/pivovarit/more-gatherers)
-
-## Project is under intense development and will be released alongside Java 24, when Stream Gatherers go GA (hopefully)
 
 ### Overview
 
