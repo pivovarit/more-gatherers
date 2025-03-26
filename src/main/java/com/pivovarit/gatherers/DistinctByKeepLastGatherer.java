@@ -22,7 +22,7 @@ record DistinctByKeepLastGatherer<T, U>(
     @Override
     public Integrator<LinkedHashMap<U, T>, T, T> integrator() {
         return Integrator.ofGreedy((state, element, _) -> {
-            state.put(keyExtractor.apply(element), element);
+            state.putLast(keyExtractor.apply(element), element);
             return true;
         });
     }
@@ -30,7 +30,7 @@ record DistinctByKeepLastGatherer<T, U>(
     @Override
     public BiConsumer<LinkedHashMap<U, T>, Downstream<? super T>> finisher() {
         return (state, downstream) -> {
-            for (T element : state.values()) {
+            for (T element : state.sequencedValues()) {
                 downstream.push(element);
             }
         };
