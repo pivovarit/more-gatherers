@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [ '24-ea' ]
+        java: [ '24' ]
         architecture: [ 'x64' ]
         
     name: Release ${{ github.event.inputs.release-tag }}
