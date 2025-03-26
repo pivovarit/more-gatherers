@@ -23,6 +23,13 @@ class DistinctByKeepLastTest {
     }
 
     @Test
+    void shouldDistinctByAndKeepLastOrder() {
+        assertThat(Stream.of("a", "bb", "ddd", "cc")
+          .gather(distinctByKeepLast(String::length)))
+          .containsExactly("a", "ddd", "cc");
+    }
+
+    @Test
     void shouldRejectNullExtractor() {
         assertThatThrownBy(() -> distinctByKeepLast(null)).isInstanceOf(NullPointerException.class);
     }
