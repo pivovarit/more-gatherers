@@ -26,7 +26,7 @@ class ArchitectureTest {
       .that().resideInAPackage("com.pivovarit.gatherers")
       .should()
       .onlyDependOnClassesThat()
-      .resideInAnyPackage("com.pivovarit.gatherers", "java..")
+      .resideInAnyPackage("com.pivovarit.gatherers", "org.jspecify.annotations", "java..")
       .as("the library should depend only on core Java classes")
       .because("users appreciate not experiencing a dependency hell");
 
