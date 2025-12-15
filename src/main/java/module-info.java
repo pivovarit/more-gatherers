@@ -2,5 +2,5 @@
 module com.pivovarit.gatherers {
     exports com.pivovarit.gatherers;
 
-    requires static org.jspecify;
+    requires transitive org.jspecify;
 }
