@@ -29,7 +29,13 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn verify
+        run: mvn package
+
+      - name: Verify class file versions
+        uses: pivovarit/verify-jar-action@v1
+        with:
+          directory: 'target'
+          bytecode-version: '68'
 
   verify-javadoc:
     runs-on: ubuntu-latest
