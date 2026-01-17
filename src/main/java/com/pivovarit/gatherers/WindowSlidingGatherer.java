@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 import java.util.stream.Gatherer;
 
 record WindowSlidingGatherer<T>(int windowSize, int step)
-  implements Gatherer<T, WindowSlidingGatherer.SlidingWindow, List<T>> {
+  implements Gatherer<T, WindowSlidingGatherer<T>.SlidingWindow, List<T>> {
     WindowSlidingGatherer {
         if (windowSize < 1) {
             throw new IllegalArgumentException("'windowSize' must be greater than zero");
@@ -38,17 +38,17 @@ record WindowSlidingGatherer<T>(int windowSize, int step)
     }
 
     @Override
-    public Supplier<WindowSlidingGatherer.SlidingWindow> initializer() {
+    public Supplier<WindowSlidingGatherer<T>.SlidingWindow> initializer() {
         return WindowSlidingGatherer.SlidingWindow::new;
     }
 
     @Override
-    public Integrator<WindowSlidingGatherer.SlidingWindow, T, List<T>> integrator() {
+    public Integrator<WindowSlidingGatherer<T>.SlidingWindow, T, List<T>> integrator() {
         return Integrator.ofGreedy((state, e, downstream) -> state.integrate(e, downstream));
     }
 
     @Override
-    public BiConsumer<WindowSlidingGatherer.SlidingWindow, Downstream<? super List<T>>> finisher() {
+    public BiConsumer<WindowSlidingGatherer<T>.SlidingWindow, Downstream<? super List<T>>> finisher() {
         return SlidingWindow::finish;
     }
 
@@ -77,7 +77,6 @@ record WindowSlidingGatherer<T>(int windowSize, int step)
             if (!emitted && at > 0 && !downstream.isRejecting()) {
                 var lastWindow = new Object[at];
                 System.arraycopy(window, 0, lastWindow, 0, at);
-                window = null;
                 at = 0;
                 emitted = true;
                 downstream.push((List<T>) Arrays.asList(lastWindow));

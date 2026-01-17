@@ -2,7 +2,7 @@
 
 Missing Stream API functionality you always longed for - provided via `Gatherers`
 
-[![build](https://github.com/pivovarit/more-gatherers/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/pivovarit/more-gatherers/actions/workflows/build.yml)
+[![ci](https://github.com/pivovarit/more-gatherers/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pivovarit/more-gatherers/actions/workflows/ci.yml)
 [![pitest](https://github.com/pivovarit/more-gatherers/actions/workflows/pitest.yml/badge.svg?branch=main)](https://pivovarit.github.io/more-gatherers)
 [![Maven Central Version](https://img.shields.io/maven-central/v/com.pivovarit/more-gatherers)](https://central.sonatype.com/artifact/com.pivovarit/more-gatherers/versions)
 [![libs.tech recommends](https://libs.tech/project/869106466/badge.svg)](https://libs.tech/project/869106466/more-gatherers)

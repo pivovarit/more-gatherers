@@ -38,6 +38,6 @@ record ZipIteratorGatherer<T1, T2, R>(Iterator<T2> iterator, BiFunction<? super 
     public Integrator<Iterator<T2>, T1, R> integrator() {
         return (state, element, downstream) -> state.hasNext()
           ? downstream.push(mapper.apply(element, state.next()))
-          : state.hasNext();
+          : false;
     }
 }
