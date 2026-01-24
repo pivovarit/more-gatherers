@@ -16,7 +16,6 @@
 package com.pivovarit.gatherers;
 
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Gatherer;
 
@@ -32,7 +31,7 @@ final class LastGatherer {
     }
 
     private record CircularBufferLastGatherer<T>(
-      long n) implements Gatherer<T, CircularBufferLastGatherer.AppendOnlyCircularBuffer<T>, T> {
+      int n) implements Gatherer<T, CircularBufferLastGatherer.AppendOnlyCircularBuffer<T>, T> {
 
         CircularBufferLastGatherer {
             if (n <= 0) {
@@ -42,7 +41,7 @@ final class LastGatherer {
 
         @Override
         public Supplier<AppendOnlyCircularBuffer<T>> initializer() {
-            return () -> new AppendOnlyCircularBuffer<>((int) n);
+            return () -> new AppendOnlyCircularBuffer<>(n);
         }
 
         @Override
@@ -55,36 +54,49 @@ final class LastGatherer {
 
         @Override
         public BiConsumer<AppendOnlyCircularBuffer<T>, Downstream<? super T>> finisher() {
-            return (state, downstream) -> {
-                if (!downstream.isRejecting()) {
-                    state.forEach(downstream::push);
-                }
-            };
+            return AppendOnlyCircularBuffer::pushAll;
         }
 
-        static class AppendOnlyCircularBuffer<T> {
-            private final T[] buffer;
-            private final int maxSize;
-            private int endIdx = 0;
-            private int size = 0;
+        static final class AppendOnlyCircularBuffer<T> {
+            private final Object[] buffer;
+            private final int mask;
+            private final int limit;
 
-            public AppendOnlyCircularBuffer(int size) {
-                this.maxSize = size;
-                this.buffer = (T[]) new Object[size];
+            private int size;
+            private int write;
+
+            AppendOnlyCircularBuffer(int limit) {
+                this.limit = Math.max(0, limit);
+                int capacity = nextPowerOfTwo(Math.max(1, this.limit));
+                this.buffer = new Object[capacity];
+                this.mask = capacity - 1;
             }
 
-            public void add(T element) {
-                buffer[endIdx++ % maxSize] = element;
-                if (size < maxSize) {
+            void add(T e) {
+                buffer[write & mask] = e;
+                write++;
+                if (size < limit) {
                     size++;
                 }
             }
 
-            public void forEach(Consumer<T> consumer) {
-                int startIdx = (endIdx - size + maxSize) % maxSize;
-                for (int i = 0; i < size; i++) {
-                    consumer.accept(buffer[(startIdx + i) % maxSize]);
+            @SuppressWarnings("unchecked")
+            T getFromOldest(int index) {
+                int start = (write - size) & mask;
+                return (T) buffer[(start + index) & mask];
+            }
+
+            void pushAll(Gatherer.Downstream<? super T> ds) {
+                for (int i = 0; i < size && !ds.isRejecting(); i++) {
+                    if (!ds.push(getFromOldest(i))) {
+                        break;
+                    }
                 }
+            }
+
+            private static int nextPowerOfTwo(int x) {
+                int highest = Integer.highestOneBit(x);
+                return (x == highest) ? x : (highest << 1);
             }
         }
     }
