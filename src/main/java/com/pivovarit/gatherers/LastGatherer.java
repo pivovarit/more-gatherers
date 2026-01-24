@@ -15,7 +15,6 @@
  */
 package com.pivovarit.gatherers;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -66,8 +65,8 @@ final class LastGatherer {
         static class AppendOnlyCircularBuffer<T> {
             private final T[] buffer;
             private final int maxSize;
-            private final AtomicInteger endIdx = new AtomicInteger(0);
-            private final AtomicInteger size = new AtomicInteger(0);
+            private int endIdx = 0;
+            private int size = 0;
 
             public AppendOnlyCircularBuffer(int size) {
                 this.maxSize = size;
@@ -75,15 +74,15 @@ final class LastGatherer {
             }
 
             public void add(T element) {
-                buffer[endIdx.getAndIncrement() % maxSize] = element;
-                if (size.get() < maxSize) {
-                    size.incrementAndGet();
+                buffer[endIdx++ % maxSize] = element;
+                if (size < maxSize) {
+                    size++;
                 }
             }
 
             public void forEach(Consumer<T> consumer) {
-                int startIdx = (endIdx.get() - size.get() + maxSize) % maxSize;
-                for (int i = 0; i < size.get(); i++) {
+                int startIdx = (endIdx - size + maxSize) % maxSize;
+                for (int i = 0; i < size; i++) {
                     consumer.accept(buffer[(startIdx + i) % maxSize]);
                 }
             }
