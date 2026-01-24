@@ -1,0 +1,668 @@
+[
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.existing",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "1",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 5.2652908746569745E7,
+            "scoreError" : 796652.5954472831,
+            "scoreConfidence" : [
+                5.1856256151122466E7,
+                5.3449561342017025E7
+            ],
+            "scorePercentiles" : {
+                "0.0" : 5.2620484087262325E7,
+                "50.0" : 5.26356799796968E7,
+                "90.0" : 5.270256217275011E7,
+                "95.0" : 5.270256217275011E7,
+                "99.0" : 5.270256217275011E7,
+                "99.9" : 5.270256217275011E7,
+                "99.99" : 5.270256217275011E7,
+                "99.999" : 5.270256217275011E7,
+                "99.9999" : 5.270256217275011E7,
+                "100.0" : 5.270256217275011E7
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    5.270256217275011E7,
+                    5.2620484087262325E7,
+                    5.26356799796968E7
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.existing",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "10",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 84.65309533360134,
+            "scoreError" : 1.1279166362471869,
+            "scoreConfidence" : [
+                83.52517869735415,
+                85.78101196984854
+            ],
+            "scorePercentiles" : {
+                "0.0" : 84.59029414542336,
+                "50.0" : 84.6550964649062,
+                "90.0" : 84.71389539047446,
+                "95.0" : 84.71389539047446,
+                "99.0" : 84.71389539047446,
+                "99.9" : 84.71389539047446,
+                "99.99" : 84.71389539047446,
+                "99.999" : 84.71389539047446,
+                "99.9999" : 84.71389539047446,
+                "100.0" : 84.71389539047446
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    84.59029414542336,
+                    84.6550964649062,
+                    84.71389539047446
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.existing",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "100",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 84.1447259104752,
+            "scoreError" : 0.19775018783616113,
+            "scoreConfidence" : [
+                83.94697572263904,
+                84.34247609831137
+            ],
+            "scorePercentiles" : {
+                "0.0" : 84.1326581171266,
+                "50.0" : 84.14788441305843,
+                "90.0" : 84.1536352012406,
+                "95.0" : 84.1536352012406,
+                "99.0" : 84.1536352012406,
+                "99.9" : 84.1536352012406,
+                "99.99" : 84.1536352012406,
+                "99.999" : 84.1536352012406,
+                "99.9999" : 84.1536352012406,
+                "100.0" : 84.1536352012406
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    84.1536352012406,
+                    84.1326581171266,
+                    84.14788441305843
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.existing",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "1000",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 90.15439502948459,
+            "scoreError" : 0.13082531979865195,
+            "scoreConfidence" : [
+                90.02356970968594,
+                90.28522034928324
+            ],
+            "scorePercentiles" : {
+                "0.0" : 90.1462626859846,
+                "50.0" : 90.15711151374889,
+                "90.0" : 90.15981088872033,
+                "95.0" : 90.15981088872033,
+                "99.0" : 90.15981088872033,
+                "99.9" : 90.15981088872033,
+                "99.99" : 90.15981088872033,
+                "99.999" : 90.15981088872033,
+                "99.9999" : 90.15981088872033,
+                "100.0" : 90.15981088872033
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    90.15711151374889,
+                    90.1462626859846,
+                    90.15981088872033
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.faster",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "1",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 100.96114240576476,
+            "scoreError" : 5.129428094250222,
+            "scoreConfidence" : [
+                95.83171431151455,
+                106.09057050001498
+            ],
+            "scorePercentiles" : {
+                "0.0" : 100.78601426747255,
+                "50.0" : 100.81195923244259,
+                "90.0" : 101.28545371737911,
+                "95.0" : 101.28545371737911,
+                "99.0" : 101.28545371737911,
+                "99.9" : 101.28545371737911,
+                "99.99" : 101.28545371737911,
+                "99.999" : 101.28545371737911,
+                "99.9999" : 101.28545371737911,
+                "100.0" : 101.28545371737911
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    100.81195923244259,
+                    100.78601426747255,
+                    101.28545371737911
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.faster",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "10",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 88.62966477808133,
+            "scoreError" : 45.15534985527811,
+            "scoreConfidence" : [
+                43.474314922803224,
+                133.78501463335945
+            ],
+            "scorePercentiles" : {
+                "0.0" : 85.77175300276336,
+                "50.0" : 90.03717656005522,
+                "90.0" : 90.08006477142543,
+                "95.0" : 90.08006477142543,
+                "99.0" : 90.08006477142543,
+                "99.9" : 90.08006477142543,
+                "99.99" : 90.08006477142543,
+                "99.999" : 90.08006477142543,
+                "99.9999" : 90.08006477142543,
+                "100.0" : 90.08006477142543
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    90.03717656005522,
+                    90.08006477142543,
+                    85.77175300276336
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.faster",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "100",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 100.77815821713226,
+            "scoreError" : 2.0026049256562577,
+            "scoreConfidence" : [
+                98.775553291476,
+                102.78076314278852
+            ],
+            "scorePercentiles" : {
+                "0.0" : 100.6537114617613,
+                "50.0" : 100.81954642539463,
+                "90.0" : 100.86121676424084,
+                "95.0" : 100.86121676424084,
+                "99.0" : 100.86121676424084,
+                "99.9" : 100.86121676424084,
+                "99.99" : 100.86121676424084,
+                "99.999" : 100.86121676424084,
+                "99.9999" : 100.86121676424084,
+                "100.0" : 100.86121676424084
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    100.86121676424084,
+                    100.81954642539463,
+                    100.6537114617613
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.pivovarit.gatherers.LastBenchmark.faster",
+        "mode" : "thrpt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Users/pivovarit/Library/Java/JavaVirtualMachines/openjdk-24/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-javaagent:/Users/pivovarit/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=57240",
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+        ],
+        "jdkVersion" : "24",
+        "vmName" : "OpenJDK 64-Bit Server VM",
+        "vmVersion" : "24+36-3646",
+        "warmupIterations" : 3,
+        "warmupTime" : "10 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 3,
+        "measurementTime" : "10 s",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "n" : "1000",
+            "size" : "10000000"
+        },
+        "primaryMetric" : {
+            "score" : 100.38017488671244,
+            "scoreError" : 6.462246653165113,
+            "scoreConfidence" : [
+                93.91792823354733,
+                106.84242153987755
+            ],
+            "scorePercentiles" : {
+                "0.0" : 100.06792993579222,
+                "50.0" : 100.30750184843123,
+                "90.0" : 100.76509287591385,
+                "95.0" : 100.76509287591385,
+                "99.0" : 100.76509287591385,
+                "99.9" : 100.76509287591385,
+                "99.99" : 100.76509287591385,
+                "99.999" : 100.76509287591385,
+                "99.9999" : 100.76509287591385,
+                "100.0" : 100.76509287591385
+            },
+            "scoreUnit" : "ops/s",
+            "rawData" : [
+                [
+                    100.76509287591385,
+                    100.30750184843123,
+                    100.06792993579222
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+            "async" : {
+                "score" : "NaN",
+                "scoreError" : "NaN",
+                "scoreConfidence" : [
+                    "NaN",
+                    "NaN"
+                ],
+                "scorePercentiles" : {
+                    "0.0" : "NaN",
+                    "50.0" : "NaN",
+                    "90.0" : "NaN",
+                    "95.0" : "NaN",
+                    "99.0" : "NaN",
+                    "99.9" : "NaN",
+                    "99.99" : "NaN",
+                    "99.999" : "NaN",
+                    "99.9999" : "NaN",
+                    "100.0" : "NaN"
+                },
+                "scoreUnit" : "---",
+                "rawData" : [
+                    [
+                        "NaN"
+                    ]
+                ]
+            }
+        }
+    }
+]
+
+

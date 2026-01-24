@@ -16,6 +16,7 @@
 package com.pivovarit.gatherers;
 
 import java.nio.file.Path;
+import org.openjdk.jmh.profile.AsyncProfiler;
 import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -32,9 +33,10 @@ final class Benchmarks {
         new Runner(new OptionsBuilder()
           .include(clazz.getSimpleName())
           .warmupIterations(3)
-          .measurementIterations(5)
+          .measurementIterations(3)
           .resultFormat(ResultFormatType.JSON)
           .result(Benchmarks.BENCHMARKS_PATH.resolve("%s.json".formatted(clazz.getSimpleName())).toString())
+          .addProfiler(AsyncProfiler.class, "event=cpu;output=flamegraph;dir=" + Benchmarks.BENCHMARKS_PATH + ";libPath=" + "/opt/homebrew/opt/async-profiler/lib/libasyncProfiler.dylib")
           .forks(1)
           .build()).run();
     }
