@@ -34,6 +34,17 @@ public final class MoreGatherers {
     }
 
     /**
+     * Creates a {@link Gatherer} that gathers the last element.
+     *
+     * @param <T> the type of the input elements
+     *
+     * @return a {@link Gatherer} that gathers the last element
+     */
+    public static <T> Gatherer<T, ?, T> last() {
+        return LastGatherer.single();
+    }
+
+    /**
      * Creates a {@link Gatherer} that gathers the last {@code n} elements.
      *
      * @param <T> the type of the input elements
