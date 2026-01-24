@@ -16,6 +16,8 @@ Java's Stream API is a powerful tool for processing collections of data. However
 Whenever possible, the library follows Project Reactor's naming conventions.
 
 Provided `Gatherers`:
+- `MoreGatherers.last()`
+  - takes the last element from the stream
 - `MoreGatherers.last(int)`
   - takes last `n` elements from the stream
 - `MoreGatherers.sampling(int)`

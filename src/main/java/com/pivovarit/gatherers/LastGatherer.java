@@ -23,6 +23,10 @@ final class LastGatherer {
     private LastGatherer() {
     }
 
+    static <T> Gatherer<T, ?, T> single() {
+        return new SingleElementLastGatherer<>();
+    }
+
     static <T> Gatherer<T, ?, T> size(int n) {
         return switch (n) {
             case 1 -> new SingleElementLastGatherer<>();
