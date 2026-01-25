@@ -67,7 +67,7 @@ final class LastGatherer {
             private final int limit;
 
             private int size;
-            private int write;
+            private int writeIdx;
 
             AppendOnlyCircularBuffer(int limit) {
                 this.limit = Math.max(0, limit);
@@ -77,22 +77,22 @@ final class LastGatherer {
             }
 
             void add(T e) {
-                buffer[write & mask] = e;
-                write++;
+                buffer[writeIdx & mask] = e;
+                writeIdx++;
                 if (size < limit) {
                     size++;
                 }
             }
 
             @SuppressWarnings("unchecked")
-            T getFromOldest(int index) {
-                int start = (write - size) & mask;
+            T get(int index) {
+                int start = (writeIdx - size) & mask;
                 return (T) buffer[(start + index) & mask];
             }
 
             void pushAll(Gatherer.Downstream<? super T> ds) {
                 for (int i = 0; i < size && !ds.isRejecting(); i++) {
-                    if (!ds.push(getFromOldest(i))) {
+                    if (!ds.push(get(i))) {
                         break;
                     }
                 }
