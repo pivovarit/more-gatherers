@@ -13,7 +13,7 @@
 
     <groupId>com.pivovarit</groupId>
     <artifactId>more-gatherers</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.2.0</version>
     <url>https://github.com/pivovarit/more-gatherers</url>
 
     <packaging>jar</packaging>
@@ -25,7 +25,7 @@
         <url>https://github.com/pivovarit/more-gatherers</url>
         <connection>scm:git:git@github.com:pivovarit/more-gatherers.git</connection>
         <developerConnection>scm:git:git@github.com:pivovarit/more-gatherers.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v0.2.0</tag>
     </scm>
 
     <properties>
