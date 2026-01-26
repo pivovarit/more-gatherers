@@ -92,14 +92,15 @@ final class LastGatherer {
             }
 
             @SuppressWarnings("unchecked")
-            T get(int index) {
-                int start = (writeIdx - size) & mask;
+            T get(int index, int start) {
                 return (T) buffer[(start + index) & mask];
             }
 
             void pushAll(Gatherer.Downstream<? super T> ds) {
+                int start = (writeIdx - size) & mask;
+
                 for (int i = 0; i < size && !ds.isRejecting(); i++) {
-                    if (!ds.push(get(i))) {
+                    if (!ds.push(get(i, start))) {
                         break;
                     }
                 }
