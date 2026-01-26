@@ -61,6 +61,13 @@ final class LastGatherer {
             return AppendOnlyCircularBuffer::pushAll;
         }
 
+        /**
+         * An append-only circular buffer with a fixed retention {@code limit}.
+         *
+         * <p>This buffer is implemented as a power-of-two sized array so that index
+         * wrap-around can be done with a cheap bit-mask instead of a modulo operation:
+         * {@code i % capacity} becomes {@code i & (capacity - 1)}.</p>
+         */
         static final class AppendOnlyCircularBuffer<T> {
             private final Object[] buffer;
             private final int mask;
