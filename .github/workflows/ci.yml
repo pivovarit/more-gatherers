@@ -32,10 +32,10 @@ jobs:
         run: mvn package
 
       - name: Verify class file versions
-        uses: pivovarit/verify-jar-action@v1
+        uses: pivovarit/verify-jar-action@v1.2.0
         with:
           directory: 'target'
-          bytecode-version: '68'
+          java-version: '24'
 
   verify-javadoc:
     runs-on: ubuntu-latest
