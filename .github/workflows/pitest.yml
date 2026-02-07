@@ -9,12 +9,23 @@ on:
       - '**.yml'
       - '**.yaml'
 
+concurrency:
+  group: 'pitest'
+  cancel-in-progress: true
+
+permissions:
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     strategy:
       matrix:
-        java: [ '24-ea' ]
+        java: [ '24' ]
         architecture: [ 'x64' ]
     name: Mutation Testing with JDK ${{ matrix.java }} on ${{ matrix.architecture }}
     steps:
@@ -22,19 +33,24 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v5
         with:
-          distribution: 'temurin'
           java-version: ${{ matrix.java }}
           architecture: ${{ matrix.architecture }}
+          distribution: 'temurin'
           cache: 'maven'
 
       - name: Run Mutation Testing
-        run: mvn package -Ppitest org.pitest:pitest-maven:mutationCoverage
+        run: mvn -B package -Ppitest org.pitest:pitest-maven:mutationCoverage -Djunit.jupiter.execution.parallel.enabled=false
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4.0.0
+      - name: Prepare deployment
+        run: mkdir -p _site/pitest && cp -r ./target/pit-reports/* _site/pitest/
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/pit-reports
-          destination_dir: pitest
+          path: './_site'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
 
