@@ -46,6 +46,9 @@ record DistinctByKeepLastGatherer<T, U>(
     public BiConsumer<LinkedHashMap<U, T>, Downstream<? super T>> finisher() {
         return (state, downstream) -> {
             for (T element : state.sequencedValues()) {
+                if (downstream.isRejecting()) {
+                    break;
+                }
                 downstream.push(element);
             }
         };

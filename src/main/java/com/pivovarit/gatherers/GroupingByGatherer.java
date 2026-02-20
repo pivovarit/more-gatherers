@@ -49,7 +49,11 @@ record GroupingByGatherer<T, K, R>(Function<? super T, ? extends K> classifier,
 
     @Override
     public BiConsumer<HashMap<K, Stream.Builder<T>>, Downstream<? super Map.Entry<K, R>>> finisher() {
-        return (map, downstream) -> map.forEach((key, builder) -> downstream.push(Map.entry(key, builder.build()
-          .collect(collector))));
+        return (map, downstream) -> {
+            for (var entry : map.entrySet()) {
+                if (downstream.isRejecting()) break;
+                downstream.push(Map.entry(entry.getKey(), entry.getValue().build().collect(collector)));
+            }
+        };
     }
 }

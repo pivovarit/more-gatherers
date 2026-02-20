@@ -237,7 +237,7 @@ public final class MoreGatherers {
 
     /**
      * Creates a {@link Gatherer} that zips elements with their corresponding index,
-     * producing a {@link Map.Entry} where the key is the index and the value is the element.
+     * producing a {@link Map.Entry} where the key is the element and the value is the index.
      *
      * @param <T> the type of the input elements
      *
