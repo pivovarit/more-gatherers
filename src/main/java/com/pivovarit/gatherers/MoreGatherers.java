@@ -266,7 +266,7 @@ public final class MoreGatherers {
      *
      * @return a {@link Gatherer} that collects elements into sliding windows
      *
-     * @throws IllegalArgumentException if {@code windowSize} is less than one or {@code step} is less than zero, or greater than {@code windowSize}
+     * @throws IllegalArgumentException if {@code windowSize} is less than one or {@code step} is less than one, or greater than {@code windowSize}
      */
     public static <T> Gatherer<T, ?, List<T>> windowSliding(int windowSize, int step) {
         return new WindowSlidingGatherer<>(windowSize, step);

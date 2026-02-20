@@ -33,10 +33,17 @@ class WindowSlidingTest {
     }
 
     @Test
-    void shouldRejectInvalidStep() {
+    void shouldRejectZeroStep() {
+        assertThatThrownBy(() -> MoreGatherers.windowSliding(3, 0))
+          .isInstanceOf(IllegalArgumentException.class)
+          .hasMessage("'step' must be greater than zero");
+    }
+
+    @Test
+    void shouldRejectNegativeStep() {
         assertThatThrownBy(() -> MoreGatherers.windowSliding(1, -1))
           .isInstanceOf(IllegalArgumentException.class)
-          .hasMessage("'step' must be greater than or equal to zero");
+          .hasMessage("'step' must be greater than zero");
     }
 
     @Test

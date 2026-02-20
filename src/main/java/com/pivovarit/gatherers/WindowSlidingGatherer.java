@@ -28,8 +28,8 @@ record WindowSlidingGatherer<T>(int windowSize, int step)
             throw new IllegalArgumentException("'windowSize' must be greater than zero");
         }
 
-        if (step < 0) {
-            throw new IllegalArgumentException("'step' must be greater than or equal to zero");
+        if (step < 1) {
+            throw new IllegalArgumentException("'step' must be greater than zero");
         }
 
         if (step > windowSize) {
