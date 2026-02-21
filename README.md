@@ -9,52 +9,226 @@ Missing Stream API functionality you always longed for - provided via `Gatherers
 
 [![Stargazers over time](https://starchart.cc/pivovarit/more-gatherers.svg?variant=adaptive)](https://starchart.cc/pivovarit/more-gatherers)
 
-### Overview
+## Requirements
 
-Java's Stream API is a powerful tool for processing collections of data. However, it lacks some functionality that could make it even more powerful. This library aims to fill that gap by providing a set of `Gatherers` that can be used to collect data from a stream more flexibly.
+Java 24+
+
+## Getting Started
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>com.pivovarit</groupId>
+    <artifactId>more-gatherers</artifactId>
+    <version>0.2.1</version>
+</dependency>
+```
+
+### Gradle
+
+```kotlin
+implementation("com.pivovarit:more-gatherers:0.2.1")
+```
+
+All examples below assume a static import:
+
+```java
+import static com.pivovarit.gatherers.MoreGatherers.*;
+```
+
+## Overview
+
+Java's Stream API is a powerful tool for processing collections of data. However, it lacks some functionality that could make it even more powerful. This library fills that gap by providing a set of `Gatherers` that extend the Stream API.
 
 Whenever possible, the library follows Project Reactor's naming conventions.
 
-Provided `Gatherers`:
-- `MoreGatherers.last()`
-  - takes the last element from the stream
-- `MoreGatherers.last(int)`
-  - takes last `n` elements from the stream
-- `MoreGatherers.sampling(int)`
-  - takes every `n`-th element from the stream
-- `MoreGatherers.zip(Iterator<T2>)`
-  - zips `Stream` elements with elements from the provided `Iterator`
-- `MoreGatherers.zip(Iterator<T2>, BiFunction<T1,T2>)`
-  - zips `Stream` elements with elements from the provided `Iterator` using a custom zipper function
-- `MoreGatherers.zip(Stream<T2>)`
-  - zips `Stream` elements with elements from the provided `Stream`
-- `MoreGatherers.zip(Stream<T2>, BiFunction<T1,T2>)`
-  - zips `Stream` elements with elements from the provided `Stream` using a custom zipper function
-- `MoreGatherers.zipWithIterable(Iterable<T2>)`
-  - zips `Stream` elements with elements from the provided `Iterable`
-- `MoreGatherers.zipWithIterable(Iterable<T2>, BiFunction<T1,T2>)`
-  - zips elements with elements from the provided `Iterable` using a custom zipper function
-- `MoreGatherers.zipWithIndex()`
-  - zips `Stream` elements with their index
-- `MoreGatherers.zipWithIndex(BiFunction<Long,T>)`
-  - zips `Stream` elements with their index using a custom zipper function
-- `MoreGatherers.distinctBy(Function<T, R>)`
-  - takes distinct elements based on a key extractor function
-- `MoreGatherers.distinctByKeepLast(Function<T, R>)`
-  - takes distinct elements based on a key extractor function, keeping the last occurrence
-- `MoreGatherers.distinctUntilChanged()`
-  - takes elements until a change is detected
-- `MoreGatherers.distinctUntilChanged(Function<T, R>)`
-  - takes elements until a change is detected based on a key extractor function
-- `MoreGatherers.windowSliding(int, int)`
-  - creates a sliding window of a fixed size with a fixed step, extends `Gatherers.windowSliding(int)` by adding a step parameter
-- `MoreGatherers.filteringByIndex(BiPredicate<Long, T>)`
-  - filters elements based on their index and value
-- `MoreGatherers.groupingBy(Function<T, K>, Collector<T, ?, R>)`
-  - groups elements by a key extractor function and applies a custom collector
-
-### Philosophy
+## Philosophy
 
 The primary goal of this library is to complement the existing Stream API by providing functionality that's currently missing without duplicating features already available. While it is technically possible to create numerous custom Gatherers, this library focuses on offering only those that cannot be easily achieved using standard Stream API operations.
 
-The library is designed to be as lightweight as possible, with no external dependencies. It's implemented using core Java libraries and follows the same conventions as the standard Stream API, drawing inspiration from Project Reactor's method names.
+The library is designed to be as lightweight as possible, with no external dependencies. It's implemented using core Java libraries and follows the same conventions as the standard Stream API.
+
+## Gatherers
+
+### `last()`
+
+Takes the last element from the stream.
+
+```java
+Stream.of(1, 2, 3)
+  .gather(last())
+  .toList(); // [3]
+```
+
+### `last(int n)`
+
+Takes the last `n` elements from the stream.
+
+```java
+Stream.of(1, 2, 3, 4, 5)
+  .gather(last(3))
+  .toList(); // [3, 4, 5]
+```
+
+### `sampling(int n)`
+
+Takes every `n`-th element from the stream.
+
+```java
+Stream.of(1, 2, 3, 4, 5, 6)
+  .gather(sampling(2))
+  .toList(); // [1, 3, 5]
+```
+
+### `distinctBy(Function<T, R>)`
+
+Takes distinct elements based on a key extractor, keeping the **first** occurrence of each key.
+
+```java
+Stream.of("a", "bb", "cc", "ddd")
+  .gather(distinctBy(String::length))
+  .toList(); // ["a", "bb", "ddd"]
+```
+
+### `distinctByKeepLast(Function<T, R>)`
+
+Takes distinct elements based on a key extractor, keeping the **last** occurrence of each key.
+
+```java
+Stream.of("a", "bb", "cc", "ddd")
+  .gather(distinctByKeepLast(String::length))
+  .toList(); // ["a", "cc", "ddd"]
+```
+
+### `distinctUntilChanged()`
+
+Suppresses consecutive duplicate elements (deduplicates runs).
+
+```java
+Stream.of(1, 1, 2, 2, 3, 1, 1)
+  .gather(distinctUntilChanged())
+  .toList(); // [1, 2, 3, 1]
+```
+
+### `distinctUntilChanged(Function<T, R>)`
+
+Suppresses consecutive elements where the extracted key is unchanged.
+
+```java
+Stream.of("a", "aa", "b", "bb", "bbb", "c")
+  .gather(distinctUntilChanged(String::length))
+  .toList(); // ["a", "b", "c"]
+```
+
+### `zip(Stream<T2>)`
+
+Zips stream elements with elements from another stream, producing `Map.Entry` pairs. Stops at the shorter stream.
+
+```java
+Stream.of(1, 2, 3)
+  .gather(zip(Stream.of("a", "b", "c")))
+  .toList(); // [1="a", 2="b", 3="c"]
+```
+
+### `zip(Stream<T2>, BiFunction<T1, T2, R>)`
+
+Zips stream elements with elements from another stream using a custom combiner.
+
+```java
+Stream.of(1, 2, 3)
+  .gather(zip(Stream.of("a", "b", "c"), (n, s) -> n + s))
+  .toList(); // ["1a", "2b", "3c"]
+```
+
+### `zip(Iterator<T2>)`
+
+Zips stream elements with elements from an iterator, producing `Map.Entry` pairs.
+
+```java
+Stream.of(1, 2, 3)
+  .gather(zip(List.of("a", "b", "c").iterator()))
+  .toList(); // [1="a", 2="b", 3="c"]
+```
+
+### `zip(Iterator<T2>, BiFunction<T1, T2, R>)`
+
+Zips stream elements with elements from an iterator using a custom combiner.
+
+### `zipWithIterable(Iterable<T2>)`
+
+Zips stream elements with elements from an iterable, producing `Map.Entry` pairs.
+
+```java
+Stream.of(1, 2, 3)
+  .gather(zipWithIterable(List.of("a", "b", "c")))
+  .toList(); // [1="a", 2="b", 3="c"]
+```
+
+### `zipWithIterable(Iterable<T2>, BiFunction<T1, T2, R>)`
+
+Zips stream elements with elements from an iterable using a custom combiner.
+
+### `zipWithIndex()`
+
+Zips each element with its 0-based index, producing `Map.Entry<T, Long>` pairs.
+
+```java
+Stream.of("a", "b", "c")
+  .gather(zipWithIndex())
+  .toList(); // ["a"=0, "b"=1, "c"=2]
+```
+
+### `zipWithIndex(BiFunction<Long, T, R>)`
+
+Zips each element with its index using a custom combiner.
+
+```java
+Stream.of("a", "b", "c")
+  .gather(zipWithIndex((index, element) -> index + ":" + element))
+  .toList(); // ["0:a", "1:b", "2:c"]
+```
+
+### `windowSliding(int windowSize, int step)`
+
+Creates sliding windows of a fixed size, advancing by `step` elements each time. Extends `Gatherers.windowSliding(int)` with a configurable step.
+
+```java
+Stream.of(1, 2, 3, 4, 5)
+  .gather(windowSliding(3, 1))
+  .toList(); // [[1,2,3], [2,3,4], [3,4,5]]
+
+Stream.of(1, 2, 3, 4, 5)
+  .gather(windowSliding(2, 2))
+  .toList(); // [[1,2], [3,4], [5]]
+```
+
+### `filteringByIndex(BiPredicate<Long, T>)`
+
+Filters elements based on their 0-based index and value.
+
+```java
+Stream.of("a", "b", "c", "d", "e")
+  .gather(filteringByIndex((index, element) -> index % 2 == 0))
+  .toList(); // ["a", "c", "e"]
+```
+
+### `groupingBy(Function<T, K>)`
+
+Groups consecutive elements by a key, emitting `Map.Entry<K, List<T>>` for each group encountered.
+
+```java
+Stream.of("a", "bb", "cc", "ddd")
+  .gather(groupingBy(String::length))
+  .toList(); // [1=["a"], 2=["bb","cc"], 3=["ddd"]]
+```
+
+### `groupingBy(Function<T, K>, Collector<T, ?, R>)`
+
+Groups consecutive elements by a key using a custom downstream collector.
+
+```java
+Stream.of("a", "bb", "cc", "ddd")
+  .gather(groupingBy(String::length, Collectors.counting()))
+  .toList(); // [1=1, 2=2, 3=1]
+```
