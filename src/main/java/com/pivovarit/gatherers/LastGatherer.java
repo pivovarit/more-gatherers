@@ -41,6 +41,9 @@ final class LastGatherer {
             if (n <= 0) {
                 throw new IllegalArgumentException("number of elements can't be lower than one");
             }
+            if (n > (1 << 30)) {
+                throw new IllegalArgumentException("number of elements can't be greater than " + (1 << 30));
+            }
         }
 
         @Override

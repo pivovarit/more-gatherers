@@ -24,7 +24,7 @@ import java.util.stream.Gatherer;
 record FilterByIndexGatherer<T>(BiPredicate<Long, ? super T> predicate) implements Gatherer<T, AtomicLong, T> {
 
     FilterByIndexGatherer {
-        Objects.requireNonNull(predicate);
+        Objects.requireNonNull(predicate, "predicate can't be null");
     }
 
     @Override

@@ -15,7 +15,6 @@
  */
 package com.pivovarit.gatherers.blackbox;
 
-import java.util.Iterator;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +56,6 @@ class ZipStreamTest {
 
     @Test
     void shouldRejectNullStream() {
-        assertThatThrownBy(() -> zip((Iterator<Object>) null)).isInstanceOf(NullPointerException.class);
+        assertThatThrownBy(() -> zip((Stream<Object>) null)).isInstanceOf(NullPointerException.class);
     }
 }

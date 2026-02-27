@@ -155,6 +155,7 @@ public final class MoreGatherers {
      */
     public static <T1, T2, R> Gatherer<T1, ?, R> zip(Stream<T2> other, BiFunction<? super T1, ? super T2, ? extends R> mapper) {
         Objects.requireNonNull(other, "other can't be null");
+        Objects.requireNonNull(mapper, "mapper can't be null");
         return zip(other.iterator(), mapper);
     }
 
